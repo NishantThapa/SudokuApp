@@ -1,185 +1,200 @@
 body {
-    margin: 0;
-    padding: 2em 0 0;
-    min-width: 375px;
-    overflow: auto;
-    font: 12px 'Microsoft YaHei', 'Lucida Grande', Helvetica, Arial, sans-serif;
-    background: #313030;
-    user-select: none;
+  margin: 0;
+  padding: 2em 0 0;
+  min-width: 375px;
+  overflow: auto;
+  font: 12px "Microsoft YaHei", "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #313030;
+  user-select: none;
 }
 
 .main {
-    position: relative;
-    margin: 0 auto;
-    width: 50%;
-    min-width: 375px;
-    height: 36vw;
-    min-height: 270px;
-    margin-bottom: 15px;
+  position: relative;
+  margin: 0 auto;
+  width: 50%;
+  min-width: 375px;
+  height: 36vw;
+  min-height: 270px;
+  margin-bottom: 15px;
 }
 /*board*/
 .board {
-    position: absolute;
-    left: 14%;
-    margin: 0 auto;
-    display: inline-block;
-    width: 72%;
-    height: 100%;
-    border: 3px solid #D5EDEB;
+  position: absolute;
+  left: 14%;
+  margin: 0 auto;
+  display: inline-block;
+  width: 72%;
+  height: 100%;
+  border: 3px solid #d5edeb;
 }
 .row {
-    border-bottom: 2px dashed rgba(255, 255, 255, 0.55);
-    margin-bottom: -1px;
-    width: 100%;
-    height: 11%
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.55);
+  margin-bottom: -1px;
+  width: 100%;
+  height: 11%;
 }
 .row:nth-child(3n) {
-    border-bottom: 2px solid rgba(251, 255, 254, 0.8);
-    margin-bottom: -4px
+  border-bottom: 2px solid rgba(251, 255, 254, 0.8);
+  margin-bottom: -4px;
 }
 .row:nth-child(1) {
-    border-top: 2px solid rgba(251, 255, 254, 0.8);
+  border-top: 2px solid rgba(251, 255, 254, 0.8);
 }
 button {
-    padding: 0
+  padding: 0;
 }
 button:focus {
   outline: none;
 }
-button.clear{
-    color: black;
-    background-color: #4285f4;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    padding-right: 10px;
-    padding-left: 10px;
-    font-weight: 700;
-    margin: 0 10px;
+button.clear {
+  color: black;
+  background-color: #4285f4;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 700;
+  margin: 0 10px;
 }
-button.solved{
-    color: black;
-    background-color: rgb(36, 206, 107);
-    padding-top: 7px;
-    padding-bottom: 7px;
-    padding-right: 10px;
-    padding-left: 10px;
-    font-weight: 700;
+button.solved {
+  color: black;
+  background-color: rgb(36, 206, 107);
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: 700;
 }
-.square{
-    width: 11.11111%;
-    height: 100%;
-    float: left;
-    background: rgba(0, 0, 0, 0);
-    font-size: 2em;
-    color: #4285f4;
-    padding: 0;
-    border-width:0 2px 0 0;
-    border-style: dashed;
-    border-color: rgba(255, 255, 255, 0.55);
-    cursor: pointer;
+.square {
+  width: 11.11111%;
+  height: 100%;
+  float: left;
+  background: rgba(0, 0, 0, 0);
+  font-size: 2em;
+  color: #4285f4;
+  padding: 0;
+  border-width: 0 2px 0 0;
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+}
+.square-input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 18px;
 }
 .square:nth-child(3n) {
-    border-right: 2px solid rgba(251, 255, 254, 0.8);
+  border-right: 2px solid rgba(251, 255, 254, 0.8);
 }
 .square:nth-child(1) {
-    border-left: 2px solid rgba(251, 255, 254, 0.8);
+  border-left: 2px solid rgba(251, 255, 254, 0.8);
 }
 .highlight {
-    background-color: rgba(52, 168, 83, 0.2);
-    animation: highlight 2s
+  background-color: rgba(52, 168, 83, 0.2);
+  animation: highlight 2s;
 }
 .filter {
-    box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.8);
-    background-color: rgba(255, 13, 126, 0.2);
-    color: #4285f4
+  box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 13, 126, 0.2);
+  color: #4285f4;
 }
 .chosen {
-    background-color: rgba(155, 204, 20, 0.3)
+  background-color: rgba(155, 204, 20, 0.3);
 }
 .origin {
-    background-color: rgba(200, 200, 200, 0.1);
-    color: #ea4335
+  background-color: rgba(200, 200, 200, 0.1);
+  color: #ea4335;
 }
 .origin.highlight {
-    background-color: rgba(52, 168, 83, 0.2);
-    color: #ea4335
+  background-color: rgba(52, 168, 83, 0.2);
+  color: #ea4335;
 }
 .origin.filter {
-    background-color: rgba(255, 13, 126, 0.2);
-    color: '#ea4335'
+  background-color: rgba(255, 13, 126, 0.2);
+  color: "#ea4335";
 }
 .conflict {
-    background-color: rgba(255, 0, 0, 0.1);
-    font-weight: 800
+  background-color: rgba(255, 0, 0, 0.1);
+  font-weight: 800;
 }
 .origin.conflict {
-    background-color: rgba(255, 0, 0, 0.3);
-    color: #ea4335
+  background-color: rgba(255, 0, 0, 0.3);
+  color: #ea4335;
 }
 .chosen.conflict {
-    background-color: rgba(255, 0, 0, 0.6);
-    font-weight: 800
+  background-color: rgba(255, 0, 0, 0.6);
+  font-weight: 800;
 }
 /*choices*/
 .choices {
-    position: relative;
-    margin: 0 auto;
-    width: 36%;
-    min-width: 270px;
-    height: 4vw;
-    min-height: 30px;
-    margin-top: 4px;
-    padding: 0;
+  position: relative;
+  margin: 0 auto;
+  width: 36%;
+  min-width: 270px;
+  height: 4vw;
+  min-height: 30px;
+  margin-top: 4px;
+  padding: 0;
 }
-.choice{
-    width: 11.111%;
-    height: 100%;
-    display: inline-block;
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 1.5em;
-    color: #4285f4;
-    border: 1px dashed rgba(251, 255, 254, 0.8);
-    border-radius: 50%;
-    cursor: pointer;
+.choice {
+  width: 11.111%;
+  height: 100%;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 1.5em;
+  color: #4285f4;
+  border: 1px dashed rgba(251, 255, 254, 0.8);
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 /*level control*/
 .controls {
-    height: 2em;
-    margin: 0 0 3.5em;
-    padding: 0;
-    list-style: none;
-    text-align: center;
-    line-height: 2em;
+  height: 2em;
+  margin: 0 0 3.5em;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  line-height: 2em;
 }
 .level {
-    display: inline-block;
-    padding: 0.5em 0.5em;
-    font-size: 1.2em;
-    line-height: 1.2em;
-    color: #fff;
-    border-radius: 50%;
-    cursor: pointer;
+  display: inline-block;
+  padding: 0.5em 0.5em;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .level.active {
-    color: #ea4335
+  color: #ea4335;
 }
 
 /*info block*/
 @keyframes fadein {
-    0% {opacity: 0; transform: translateY(-5em)};
-    100% {opacity: 100; transform: translateY(-5em)}
+  0% {
+    opacity: 0;
+    transform: translateY(-5em);
+  }
+  100% {
+    opacity: 100;
+    transform: translateY(-5em);
+  }
 }
 
 /*for phone or some screen*/
 @media screen and (max-aspect-ratio: 5/3) {
-    .main {
-        width: 70%;
-        height:50.4vw;
-    }
-    .choices {
-        width: 50.4%;
-        height: 5.6vw;
-    }
+  .main {
+    width: 70%;
+    height: 50.4vw;
+  }
+  .choices {
+    width: 50.4%;
+    height: 5.6vw;
+  }
 }
-
