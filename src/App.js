@@ -270,7 +270,7 @@ const Game = () => {
         {controls}
         <li>
           <button className="clear" onClick={() => handleNumsClick("X")}>
-            Select & Delete
+            Undo/Delete
           </button>
           <button className={"solved"} onClick={solve}>
             Solve It Now
