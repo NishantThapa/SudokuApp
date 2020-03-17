@@ -15,7 +15,7 @@ export const SudokuGenerator = gridVal => {
     let row = [];
     for (let j = 0; j <= 8; j++) {
       if (numSet.has(pattern[9 * i + j])) {
-        row.push(pattern[9 * i + j]);
+        row.push({number: pattern[9 * i + j], initial: true});
       } else {
         row.push(null);
       }

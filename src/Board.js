@@ -20,14 +20,13 @@ const Board = props => {
       if (props.chosen === cord) {
         className += " chosen";
       }
-
       return (
         <button
           key={squareindex}
           className={className}
           onClick={() => props.onClick(rowindex, squareindex)}
         >
-          {input(props.values && props.values[rowindex][squareindex])}
+          {input(props.values && props.values[rowindex][squareindex]!== null && props.values[rowindex][squareindex].number)}
         </button>
       );
     });

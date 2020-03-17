@@ -168,6 +168,17 @@ const Game = () => {
   };
 
   const clear =()=>{
+    docState.values.map(value=>{
+      value.map((box, index)=>{
+        if(box && !box.initial){
+          value[index]= null
+        }
+      })
+    })
+    setDocState({
+      ...docState,
+      values: docState.values
+    });
   }
 
   const handleClick = (i, j) => {
@@ -210,7 +221,7 @@ const Game = () => {
       if (i === "X") {
         values[chosen[0]][chosen[1]] = null;
       } else {
-        values[chosen[0]][chosen[1]] = "" + i;
+        values[chosen[0]][chosen[1]] = {number: "" + i, initial: false};
       }
       let conflict = new Set();
       for (let i = 0; i < 9; i++) {
