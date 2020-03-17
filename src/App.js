@@ -15,7 +15,9 @@ const Game = () => {
     conflict: new Set(),
     peep: false
   });
-
+  const [InitialGrid, setInitialGrid] = useState();  // check Grid Initial state
+  console.log(InitialGrid,"InitialGrid")
+  console.log(docState.values,"InitialGrid")
   useEffect(() => {
     generate("easy");
   }, []);
@@ -38,7 +40,7 @@ const Game = () => {
     let grid = puzzles[Math.floor(Math.random() * puzzles.length)],
       sudoku = SudokuGenerator(grid),
       puzzle = sudoku[0];
-
+      setInitialGrid(sudoku)    // Grid Initail state
     setSolutionValue(sudoku[1]);
 
     const origin = new Set();
@@ -165,6 +167,9 @@ const Game = () => {
     }
   };
 
+  const clear =()=>{
+  }
+
   const handleClick = (i, j) => {
     let values = docState.values.slice();
     let thisvalue = values[i].slice();
@@ -270,10 +275,10 @@ const Game = () => {
         {controls}
         <li>
           <button className="clear" onClick={() => handleNumsClick("X")}>
-            Undo/Delete
+            Undo
           </button>
-          <button className={"solved"} onClick={solve}>
-            Solve It Now
+          <button className={"solved"} onClick={clear}>
+            Clear
           </button>
         </li>
       </ul>
@@ -290,7 +295,16 @@ const Game = () => {
         />
         <div className="right"></div>
       </div>
-      <ul className="choices">{choices}</ul>
+      <ul className="controls">
+        <li>
+          <button className="clear" onClick={console.log("addCheckFunc")}>
+            Check
+          </button>
+          <button className={"solved"} onClick={solve}>
+            Solve
+          </button>
+        </li>
+      </ul>
     </div>
   );
 };
