@@ -15,9 +15,7 @@ const Game = () => {
     conflict: new Set(),
     peep: false
   });
-  const [InitialGrid, setInitialGrid] = useState();  // check Grid Initial state
-  console.log(InitialGrid,"InitialGrid")
-  console.log(docState.values,"InitialGrid")
+  console.log(docState,"InitialGrid")
   useEffect(() => {
     generate("easy");
   }, []);
@@ -40,9 +38,7 @@ const Game = () => {
     let grid = puzzles[Math.floor(Math.random() * puzzles.length)],
       sudoku = SudokuGenerator(grid),
       puzzle = sudoku[0];
-      setInitialGrid(sudoku)    // Grid Initail state
     setSolutionValue(sudoku[1]);
-
     const origin = new Set();
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
@@ -177,10 +173,22 @@ const Game = () => {
     })
     setDocState({
       ...docState,
-      values: docState.values
+      values: docState.values,
+      conflict: new Set(),
+      peep:false
     });
   }
 
+  const check = () => {
+
+    if (docState.conflict.size > 0) {
+      alert('There is Some error')
+      console.log("error")
+    } else {
+      console.log("clear")
+      alert('Your are clear to go')
+    }
+  }
   const handleClick = (i, j) => {
     let values = docState.values.slice();
     let thisvalue = values[i].slice();
@@ -244,28 +252,15 @@ const Game = () => {
         conflict: conflict,
         // chosen: null
       });
-      if (!docState.peep && values.toString() === solutionValue.toString()) {
-        alert("Congratulations, you have completed this puzzle!");
-        setDocState({
-          ...docState,
-          peep: true
-        });
-      }
+      // if (values.toString() === solutionValue.toString()) {
+      //   alert("Congratulations, you have completed this puzzle!");
+      //   setDocState({
+      //     ...docState,
+      //     peep: true
+      //   });
+      // }
     }
   };
-
-  const choices = [..."123456789"].map(i => {
-    return (
-      <button
-        key={i}
-        className="choice"
-        value={i}
-        onClick={() => handleNumsClick(i)}
-      >
-        {i}
-      </button>
-    );
-  });
 
   const controls = ["Easy", "Medium", "Hard"].map((level, index) => {
     let active = level === docState.level ? " active" : "";
@@ -308,7 +303,7 @@ const Game = () => {
       </div>
       <ul className="controls">
         <li>
-          <button className="clear" onClick={console.log("addCheckFunc")}>
+          <button className="clear" onClick={check}>
             Check
           </button>
           <button className={"solved"} onClick={solve}>

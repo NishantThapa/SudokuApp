@@ -111,23 +111,23 @@ button.solved {
   color: #ea4335;
 }
 .origin.highlight {
-  background-color: rgba(52, 168, 83, 0.2);
+  /* background-color: rgba(52, 168, 83, 0.2); */
   color: #ea4335;
 }
 .origin.filter {
-  background-color: rgba(255, 13, 126, 0.2);
+  /* background-color: rgba(255, 13, 126, 0.2); */
   color: "#ea4335";
 }
 .conflict {
-  background-color: rgba(255, 0, 0, 0.1);
+  /* background-color: rgba(255, 0, 0, 0.1); */
   font-weight: 800;
 }
 .origin.conflict {
-  background-color: rgba(255, 0, 0, 0.3);
+  /* background-color: rgba(255, 0, 0, 0.3); */
   color: #ea4335;
 }
 .chosen.conflict {
-  background-color: rgba(255, 0, 0, 0.6);
+  /* background-color: rgba(255, 0, 0, 0.6); */
   font-weight: 800;
 }
 /*choices*/

@@ -26,7 +26,7 @@ const Board = props => {
           className={className}
           onClick={() => props.onClick(rowindex, squareindex)}
         >
-          {input(props.values && props.values[rowindex][squareindex]!== null && props.values[rowindex][squareindex].number)}
+          {input(props.values && props.values[rowindex][squareindex] !== null && props.values[rowindex][squareindex] !== undefined && props.values[rowindex][squareindex].number)}
         </button>
       );
     });

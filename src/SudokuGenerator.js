@@ -27,9 +27,9 @@ export const SudokuGenerator = gridVal => {
     let row = [];
     for (let j = 0; j <= 8; j++) {
       if (charSet.has(pattern[9 * i + j])) {
-        row.push(map.get(pattern[9 * i + j]));
+        row.push({number: map.get(pattern[9 * i + j]),initial: false});
       } else {
-        row.push(pattern[9 * i + j]);
+        row.push({number: pattern[9 * i + j],initial: true});
       }
     }
     solution.push(row);
