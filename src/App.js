@@ -182,11 +182,11 @@ const Game = () => {
   const check = () => {
 
     if (docState.conflict.size > 0) {
-      alert('There is Some error')
-      console.log("error")
+      alert('This Sudoku is NOT solvable')
+      
     } else {
-      console.log("clear")
-      alert('Your are clear to go')
+      console.log("This Sudoku is solvable, keep going !!")
+     
     }
   }
   const handleClick = (i, j) => {
@@ -281,11 +281,13 @@ const Game = () => {
         {controls}
         <li>
           <button className="clear" onClick={() => handleNumsClick("X")}>
-            Undo
+          ⤺ Undo
           </button>
-          <button className={"solved"} onClick={clear}>
-            Clear
+          <button className="clear" onClick={clear}>
+          ⟲ Clear
           </button>
+          
+          
         </li>
       </ul>
       <div className="main">
@@ -303,10 +305,10 @@ const Game = () => {
       </div>
       <ul className="controls">
         <li>
-          <button className="clear" onClick={check}>
+        <button className="clear" onClick={check}>
             Check
           </button>
-          <button className={"solved"} onClick={solve}>
+          <button className="clear" onClick={solve}>
             Solve
           </button>
         </li>
