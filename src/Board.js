@@ -45,13 +45,17 @@ const Board = props => {
     if (range.indexOf(val) === -1) return;
     props.onChangeNums(val);
   };
-
+  const handleKeyDown =(e)=>{
+    if (e.key === 'Backspace') {
+      props.delete()
+    }
+  }
   const input = val => (
     <input
       className="square-input"
-      disabled={val}
       value={val ? val : ""}
       onChange={e => handleChange(e)}
+      onKeyDown={handleKeyDown}
     />
   );
 

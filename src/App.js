@@ -15,9 +15,7 @@ const Game = () => {
     conflict: new Set(),
     peep: false
   });
-  const [InitialGrid, setInitialGrid] = useState();  // check Grid Initial state
-  console.log(InitialGrid,"InitialGrid")
-  console.log(docState.values,"InitialGrid")
+ 
   useEffect(() => {
     generate("easy");
   }, []);
@@ -39,8 +37,7 @@ const Game = () => {
     }
     let grid = puzzles[Math.floor(Math.random() * puzzles.length)],
       sudoku = SudokuGenerator(grid),
-      puzzle = sudoku[0];
-      setInitialGrid(sudoku)    // Grid Initail state
+      puzzle = sudoku[0]; 
     setSolutionValue(sudoku[1]);
 
     const origin = new Set();
@@ -147,6 +144,17 @@ const Game = () => {
     });
   };
 
+  const check = () => {
+
+    if (docState.conflict.size > 0) {
+      alert('This Sudoku is NOT solvable')
+      
+    } else {
+      alert("This Sudoku is solvable, keep going !!")
+     
+    }
+  }
+
   const solve = () => {
     if (docState.peep) {
       return;
@@ -168,6 +176,7 @@ const Game = () => {
   };
 
   const clear =()=>{
+    generate(docState.level);
   }
 
   const handleClick = (i, j) => {
@@ -243,18 +252,6 @@ const Game = () => {
     }
   };
 
-  const choices = [..."123456789"].map(i => {
-    return (
-      <button
-        key={i}
-        className="choice"
-        value={i}
-        onClick={() => handleNumsClick(i)}
-      >
-        {i}
-      </button>
-    );
-  });
 
   const controls = ["Easy", "Medium", "Hard"].map((level, index) => {
     let active = level === docState.level ? " active" : "";
@@ -275,10 +272,10 @@ const Game = () => {
         {controls}
         <li>
           <button className="clear" onClick={() => handleNumsClick("X")}>
-            Undo
+          ⤺ Undo
           </button>
           <button className={"solved"} onClick={clear}>
-            Clear
+          ⟲ Clear
           </button>
         </li>
       </ul>
@@ -292,12 +289,13 @@ const Game = () => {
           highlight={docState.highlight}
           onClick={handleClick}
           onChangeNums={handleNumsClick}
+          delete={() => handleNumsClick("X")}
         />
         <div className="right"></div>
       </div>
       <ul className="controls">
         <li>
-          <button className="clear" onClick={console.log("addCheckFunc")}>
+          <button className="clear" onClick={check}>
             Check
           </button>
           <button className={"solved"} onClick={solve}>
