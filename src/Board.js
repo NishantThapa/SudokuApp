@@ -20,13 +20,14 @@ const Board = props => {
       if (props.chosen === cord) {
         className += " chosen";
       }
+
       return (
         <button
           key={squareindex}
           className={className}
           onClick={() => props.onClick(rowindex, squareindex)}
         >
-          {input(props.values && props.values[rowindex][squareindex] !== null && props.values[rowindex][squareindex] !== undefined && props.values[rowindex][squareindex].number)}
+          {input(props.values && props.values[rowindex][squareindex])}
         </button>
       );
     });
@@ -44,13 +45,17 @@ const Board = props => {
     if (range.indexOf(val) === -1) return;
     props.onChangeNums(val);
   };
-
+  const handleKeyDown =(e)=>{
+    if (e.key === 'Backspace') {
+      props.delete()
+    }
+  }
   const input = val => (
     <input
       className="square-input"
-      disabled={val}
       value={val ? val : ""}
       onChange={e => handleChange(e)}
+      onKeyDown={handleKeyDown}
     />
   );
 

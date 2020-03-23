@@ -15,7 +15,7 @@ const Game = () => {
     conflict: new Set(),
     peep: false
   });
-  console.log(docState,"InitialGrid")
+ 
   useEffect(() => {
     generate("easy");
   }, []);
@@ -37,8 +37,9 @@ const Game = () => {
     }
     let grid = puzzles[Math.floor(Math.random() * puzzles.length)],
       sudoku = SudokuGenerator(grid),
-      puzzle = sudoku[0];
+      puzzle = sudoku[0]; 
     setSolutionValue(sudoku[1]);
+
     const origin = new Set();
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
@@ -143,6 +144,17 @@ const Game = () => {
     });
   };
 
+  const check = () => {
+
+    if (docState.conflict.size > 0) {
+      alert('This Sudoku is NOT solvable')
+      
+    } else {
+      alert("This Sudoku is solvable, keep going !!")
+     
+    }
+  }
+
   const solve = () => {
     if (docState.peep) {
       return;
@@ -164,31 +176,9 @@ const Game = () => {
   };
 
   const clear =()=>{
-    docState.values.map(value=>{
-      value.map((box, index)=>{
-        if(box && !box.initial){
-          value[index]= null
-        }
-      })
-    })
-    setDocState({
-      ...docState,
-      values: docState.values,
-      conflict: new Set(),
-      peep:false
-    });
+    generate(docState.level);
   }
 
-  const check = () => {
-
-    if (docState.conflict.size > 0) {
-      alert('This Sudoku is NOT solvable')
-      
-    } else {
-      console.log("This Sudoku is solvable, keep going !!")
-     
-    }
-  }
   const handleClick = (i, j) => {
     let values = docState.values.slice();
     let thisvalue = values[i].slice();
@@ -229,7 +219,7 @@ const Game = () => {
       if (i === "X") {
         values[chosen[0]][chosen[1]] = null;
       } else {
-        values[chosen[0]][chosen[1]] = {number: "" + i, initial: false};
+        values[chosen[0]][chosen[1]] = "" + i;
       }
       let conflict = new Set();
       for (let i = 0; i < 9; i++) {
@@ -252,15 +242,16 @@ const Game = () => {
         conflict: conflict,
         // chosen: null
       });
-      // if (values.toString() === solutionValue.toString()) {
-      //   alert("Congratulations, you have completed this puzzle!");
-      //   setDocState({
-      //     ...docState,
-      //     peep: true
-      //   });
-      // }
+      if (!docState.peep && values.toString() === solutionValue.toString()) {
+        alert("Congratulations, you have completed this puzzle!");
+        setDocState({
+          ...docState,
+          peep: true
+        });
+      }
     }
   };
+
 
   const controls = ["Easy", "Medium", "Hard"].map((level, index) => {
     let active = level === docState.level ? " active" : "";
@@ -283,11 +274,9 @@ const Game = () => {
           <button className="clear" onClick={() => handleNumsClick("X")}>
           ⤺ Undo
           </button>
-          <button className="clear" onClick={clear}>
+          <button className={"solved"} onClick={clear}>
           ⟲ Clear
           </button>
-          
-          
         </li>
       </ul>
       <div className="main">
@@ -300,15 +289,16 @@ const Game = () => {
           highlight={docState.highlight}
           onClick={handleClick}
           onChangeNums={handleNumsClick}
+          delete={() => handleNumsClick("X")}
         />
         <div className="right"></div>
       </div>
       <ul className="controls">
         <li>
-        <button className="clear" onClick={check}>
+          <button className="clear" onClick={check}>
             Check
           </button>
-          <button className="clear" onClick={solve}>
+          <button className={"solved"} onClick={solve}>
             Solve
           </button>
         </li>
